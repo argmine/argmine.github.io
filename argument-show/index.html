@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="argumentDemo">
+<head lang="en">
+	<meta charset="UTF-8">
+	<title></title>
+	<link rel="stylesheet" href="libs/boostrap/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="libs/fa/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="style.css"/>
+	<script src="angular.min.js"></script>
+    <script src="data.js"></script>
+</head>
+<body>
+<div ng-controller="ArgumentController">
+	<div class="tools">
+		<label >
+			Topic
+			<select ng-model="attrs.topic" ng-change="data = restData[attrs.topic]">
+				<option ng-repeat="topic in attrs.topics" value="{{ topic.id }}">{{ topic.name }}</option>
+			</select>
+		</label>
+		<label>
+			Sentiment
+			<select ng-model="attrs.filterSentiment">
+				<option value="All">All</option>
+				<option ng-repeat="s in attrs.sentiments" value="{{s}}">{{s}}</option>
+			</select>
+		</label>
+		<label style="display: none">
+			Source Type
+			<select ng-model="attrs.filterSrcType">
+				<option value="All">All</option>
+				<option ng-repeat="type in attrs.sourceTypes" value="{{type}}">{{type}}</option>
+			</select>
+		</label>
+		
+	</div>
+	<div>
+		<div class="topic main-topic topic-active-{{data.active}} topic-sentiment-{{data.sentiment}}" ng-click="data.active = !data.active">
+			<div class="topic-container">
+				<div class="topic-children-flag">
+					<span class="fa fa-caret-{{data.active?'down':'right'}}" ng-if="data.children && data.children.length > 0"></span>
+				</div>
+				<div class="topic-header-container">
+					<div class="topic-header text" ng-if="data.type == 'text'">{{data.content}}</div>
+					<div class="topic-header image" ng-if="data.type == 'image'">
+						<img src="{{data.content}}" />
+					</div>
+					<div class="topic-source" ng-if="data.source">
+						{{data.source}}
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+		<div class="children active-{{data.active}}" ng-if="data.children">
+			<div class="child" ng-repeat="claim in data.children | filterBySentiment: attrs.filterSentiment | filterBySrcType: attrs.filterSrcType">
+				<div class="topic claim topic-sentiment-{{claim.sentiment}}" ng-click="claim.active = !claim.active">
+					<div class="topic-container">
+						<div class="topic-children-flag">
+							<span class="fa fa-caret-{{claim.active?'down':'right'}}" ng-if="claim.children && claim.children.length > 0"></span>
+						</div>
+						<div class="topic-header-container">
+							<div class="topic-header text" ng-if="claim.type == 'text'">{{claim.content}}</div>
+							<div class="topic-header image" ng-if="claim.type == 'image'">
+								<img src="{{claim.content}}">
+							</div>
+							<div class="topic-source" ng-if="claim.source">
+								{{claim.source}}
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="children active-{{claim.active}}" ng-if="claim.children">
+					<div class="child" ng-repeat="evidence in claim.children | filterBySentiment: attrs.filterSentiment | filterBySrcType: attrs.filterSrcType">
+						<div class="topic evidence topic-sentiment-{{evidence.sentiment}}">
+							<div class="topic-container">
+								<div class="topic-children-flag">
+									<span class="fa fa-caret-{{evidence.active?'down':'right'}}" ng-if="evidence.children && data.children.length > 0"></span>
+								</div>
+								<div class="topic-header-container">
+									<div class="topic-header text" ng-if="evidence.type == 'text'">{{evidence.content}}</div>
+									<div class="topic-header image" ng-if="evidence.type == 'image'">
+										<img src="{{evidence.content}}">
+									</div>
+									<div class="topic-source" ng-if="evidence.source">
+										{{evidence.source}}
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+<script src="data-preprocessor.js"></script>
+<script src="controller.js"></script>
+</body>
+</html>

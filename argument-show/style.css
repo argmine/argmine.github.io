@@ -1,0 +1,79 @@
+.topic{
+    padding: 3px 6px;
+    border-left: 5px solid #999;
+    margin-top: 2px;
+}
+
+.topic.main-topic{
+    border-left-color: #888888;
+}
+.topic.topic-sentiment-Negative{
+    border-left-color: #ffb2b2;
+}
+.topic.topic-sentiment-Positive{
+    border-left-color: #a5ffb9;
+}
+
+.topic-container{
+    position: relative;
+}
+
+.topic-children-flag{
+    display: inline-block;
+    width: 10px;
+    vertical-align: top;
+}
+
+.topic-header-container{
+    display: inline-block;
+    max-width: 600px;
+    vertical-align: top;
+}
+
+
+.main-topic{
+    /*border: 2px solid #222222;*/
+}
+
+
+
+.main-topic.topic-active-true{
+    /*background: #d1f0ff;*/
+}
+
+.main-topic.topic-active-false{
+    /*background: #9bdfff;*/
+}
+
+.children{
+    margin-left: 20px;
+    /*border-left: 3px solid;*/
+}
+
+.children.active-true{
+    display: block;
+}
+
+.children.active-false{
+    display: none;
+}
+
+.topic{
+    cursor: pointer;
+}
+
+.topic.claim.topic-sentiment-Negative{
+    /*background: #ffff00;*/
+}
+
+.topic.claim.topic-sentiment-Positive{
+    /*background: green;*/
+}
+
+
+.topic-source{
+    font-size: 10px;
+    font-style: italic;
+    color: #aaa;
+}
+

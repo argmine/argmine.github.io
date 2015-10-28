@@ -1,0 +1,201 @@
+
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>ArgMine</title>
+<meta http-equiv="Page-Enter" content="revealTrans(Duration=1.0,Transition=3)">
+<link href="style.css" rel="stylesheet" type="text/css">
+
+<style>
+<!--
+ li.MsoNormal
+	{mso-style-parent:"";
+	margin-bottom:.0001pt;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	margin-left:0in; margin-right:0in; margin-top:0in}
+-->
+</style>
+
+</head>
+
+<BODY  BGCOLOR=#FFFFFF background="images/bg.gif" LEFTMARGIN=0 TOPMARGIN=0 MARGINWIDTH=0 MARGINHEIGHT=0 >
+
+<table width="100%" align="center" border="0" cellpadding="0" cellspacing="0">
+        
+        <tr>
+        
+        <td align="center">
+       
+        <table width="800" bgcolor="#FFFFFF">
+        <tr>
+        	<td width="20"> </td>
+            <td align="center" valign="top" width="750">
+            
+            <table width="750" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
+		
+	
+            
+			<tr>
+				<td class="subject" style="padding-top:0px; color: #000;">
+					<b>Argumentation Mining via Crowdsourcing</b>
+				</td>
+			</tr>
+            
+            <tr bgcolor="#FF0000">
+            	<td height="1px" style="padding:2px">
+                </td>
+            </tr>
+            
+			
+            <tr>
+            	<td class="subTitle" style="padding-top:25px">
+					I. Introduction
+                </td>
+            </tr>
+            <tr>
+            	<td class="body">
+The amount of controversial issues being discussed on the Web has been growing dramatically. In articles, blogs, and wikis, people express their points of view in the form of arguments, i.e., claims that are supported by evidence. Discovery of arguments has a large potential for informing decision-making. However, argument discovery is hindered by the sheer amount of available Web data and its unstructured, free-text representation. The former calls for automatic text-mining approaches, whereas the latter implies a need for manual processing to extract arguments of high quality.
+
+In this paper, we propose a crowdsourcing-based approach to build and maintain a corpus of arguments, an <strong>argumentation base</strong>, thereby mediating the trade-off of automatic text-mining and manual processing in argument discovery. We develop an end-to-end process that minimizes the crowd cost while maximizing the quality of crowd answers by: (1) ranking argumentative texts, (2) pro-actively eliciting human input to extract arguments from these texts, and (3) aggregating crowd answers and estimating the result quality.
+Our experiments with real-world datasets highlight that our method discovers virtually all arguments in documents when processing only 25% of the text with more than 80% precision, using only 50% of the budget consumed by a baseline algorithm.
+                </td>
+            </tr>
+
+              <tr>
+                <td class="subTitle">
+                    II. Approach
+                </td>
+            </tr>
+             
+            <tr>
+                <td class="item">
+                    <br>
+                    Argumentation mining starts with the retrieval of documents that are relevant to a user-defined query. Given a set of relevant documents, our approach, summarized in the following figure, has been designed to meet the following requirements.
+                    <ol>
+                        <li><strong>Dealing with large-scale data.</strong> Techniques from Information Retrieval may be used to find documents related to a certain topic. Since such techniques are mostly keyword-based, the result can be expected to be a very large number of text documents of considerable length.</li>
+                        <li><strong>Efficient manual processing.</strong> Given the unstructured nature of most text documents, manual processing may be inevitable to a certain extent. Yet, human resources are scarce and, thus, induce relatively high costs. Consequently, argumentation mining shall strive for maximizing the benefit of human input.</li>
+                        <li><strong>Feedback on result quality.</strong> Result of manual processing may be incorrect and contradictory. Therefore, sensible argumentation mining shall also include feedback on the confidence in the extracted arguments.</li>
+                    </ol>
+                <br>
+                <center>
+                <img name="wui" src="images/overview.png" width="70%" height="40%" align="middle" alt="Architecture">
+                </center>
+                <br>
+                <br>
+                To cope with large-scale data (1st requirement) and support efficient manual processing (2nd requirement), we rely on guided crowdsourcing, which involves <strong> ranking of paragraphs</strong> and  <strong>argument crowdsourcing </strong> for selected paragraphs. Documents are split into paragraphs and a scoring model is used to rank them based on their likelihood to contain arguments. Crowdsourcing can generally be seen as a means to scale manual processing to large-scale data. Our approach further improves scalability by exploiting crowdsourcing only for selected paragraphs and by implementing a cost-effective strategy for posting crowd tasks, which dynamically determines the number of required answers per paragraph.
+                <br>
+                To obtain a single trusted set of arguments in the presence of uncertain, potentially incorrect human input, our approach features a third step, <strong>argument aggregation</strong>. Using a probabilistic model, we resolve conflicts in the answers and identify the arguments that best represent a paragraph, thereby addressing the need for feedback on the result quality (3rd requirement).
+                <br>
+                </td>
+            </tr>
+            
+            <tr>
+            	<td class="subTitle">
+                    <br>
+                	III. Results
+                </td>
+            </tr>
+            <tr>
+            	<td class="item">
+                    The result of argumentation mining is an argumentation base for different keywords. The statistics for the argumentation base is as follows.
+                    <center>
+                    <table  border="1" style="width:40%;border-collapse: collapse;border: 1px solid black;">
+                      <tr>
+                        <td class="item" style="vertical-align:center"><strong>Dataset</strong></td>
+                        <td class="item"><strong>#Args</strong></td>
+                      </tr>
+                      <tr>
+                        <td class="item">vaccine</td>
+                        <td class="item">184</td> 
+                      </tr>
+                       <tr>
+                        <td class="item">processed foods</td>
+                        <td class="item">312</td> 
+                      </tr>
+                       <tr>
+                        <td class="item">GMO</td>
+                        <td class="item">221</td> 
+                      </tr>
+                       <tr>
+                        <td class="item">death penalty</td>
+                        <td class="item">193</td> 
+                      </tr>
+                       <tr>
+                        <td class="item">globalization</td>
+                        <td class="item">174</td> 
+                      </tr>
+                    </table>
+                    </center>
+                    <br>
+                You can browse the arguments <strong><a href="argument-show/index.html">here</a></strong>
+                </td>
+            </tr>
+            
+             <tr>
+            	<td class="subTitle">
+                	IV. Technical report
+                </td>
+            </tr>
+            <tr>
+            	<td class="item">
+<<<<<<< HEAD
+                More detail on the approach and result can be found in our <strong><a href="appendix/main_Argmine.pdf">technical report</a></strong>
+=======
+              <a href="appendix/main_ArgMine.pdf">Appendix</a>
+>>>>>>> 533a43f34bd2ac3185fee0459a584beef240c0a5
+            	</td>
+            </tr>
+            
+            
+            
+            
+                     
+                        
+	</table>
+            
+         </td>
+             <td width="20"> </td>
+        </tr>
+        <tr height="40px">
+        <td>
+        </td>
+        </tr>
+        
+        	<tr bgcolor="#CCCCCC">
+            	<td height="1px" colspan="3" style="padding:0px;">
+                </td>
+            </tr>
+
+    				<tr> 
+      					
+      					<td align="center" height="1px" width="757" colspan="3" bgcolor="#FFFFFF" style="padding:0px; margin-top: 0px;">
+              								
+              								<font color="#e2ebfe" face="Tahoma" style="FONT-SIZE: 8pt">
+              									<b><font color="#666666">© 2015 
+											LSIR </font></b></font>&nbsp;
+                                            
+                                            </td>
+              							
+      						
+        			</tr>
+                    
+                    
+                    <tr bgcolor="#CCCCCC">
+            	<td height="10px" colspan="3" style="padding:0px;">
+                </td>
+            </tr>
+                    
+    				       
+        </table>
+         </td>
+        
+</tr>
+
+
+</table>
+	
+</body>
+</html>
