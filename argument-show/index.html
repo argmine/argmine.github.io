@@ -18,13 +18,13 @@
 				<option ng-repeat="topic in attrs.topics" value="{{ topic.id }}">{{ topic.name }}</option>
 			</select>
 		</label>
-		<label>
+		<!--<label>
 			Sentiment
 			<select ng-model="attrs.filterSentiment">
 				<option value="All">All</option>
 				<option ng-repeat="s in attrs.sentiments" value="{{s}}">{{s}}</option>
 			</select>
-		</label>
+		</label>-->
 		<label style="display: none">
 			Source Type
 			<select ng-model="attrs.filterSrcType">
