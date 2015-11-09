@@ -40,7 +40,7 @@
             
 			<tr>
 				<td class="subject" style="padding-top:0px; color: #000;">
-					<b>Argumentation Mining </b>[<a href="appendix/main_report.pdf" style="color: #FF0000;">pdf</a>][<a href="appendix/main_appendix.pdf" style="color: #FF0000;">preliminary study</a>][<a href="argument-show/index.html" style="color: #FF0000;">arguments</a>]
+					<b>Argument Discovery</b>[<a href="appendix/main_report.pdf" style="color: #FF0000;">pdf</a>][<a href="appendix/main_appendix.pdf" style="color: #FF0000;">preliminary study</a>][<a href="argument-show/index.html" style="color: #FF0000;">arguments</a>]
 				</td>
 			</tr>
             
@@ -73,13 +73,12 @@ Our experiments with real-world datasets highlight that our method discovers vir
             <tr>
                 <td class="item">
                     <br>
-                    Our approach to argumentation mining can be found in our <strong><a href="appendix/main_report.pdf" style="color: #FF0000;">paper</a></strong>. In the following, we provide a summary of our approach.
+                    Our approach to argument discovery can be found in our <strong><a href="appendix/main_report.pdf" style="color: #FF0000;">paper</a></strong>. In the following, we provide a summary of our approach.
 
                     Argumentation mining starts with the retrieval of documents that are relevant to a user-defined query. Given a set of relevant documents, our approach, summarized in the following figure, has been designed to meet the following requirements.
                     <ol>
-                        <li><strong>Dealing with large-scale data.</strong> Techniques from Information Retrieval may be used to find documents related to a certain topic. Since such techniques are mostly keyword-based, the result can be expected to be a very large number of text documents of considerable length.</li>
-                        <li><strong>Efficient manual processing.</strong> Given the unstructured nature of most text documents, manual processing may be inevitable to a certain extent. Yet, human resources are scarce and, thus, induce relatively high costs. Consequently, argumentation mining shall strive for maximizing the benefit of human input.</li>
-                        <li><strong>Feedback on result quality.</strong> Result of manual processing may be incorrect and contradictory. Therefore, sensible argumentation mining shall also include feedback on the confidence in the extracted arguments.</li>
+                        <li><strong>Efficient manual processing.</strong> Human resources are scarce and induce relatively high costs. Hence, semi-automated argument discovery shall strive for maximizing the benefit of user input.</li>
+                        <li><strong>Robustness against heterogeneous input.</strong> Results of manual processing may be inconsistent or contradictory. Therefore, sensible argument discovery shall be robust in the presence of heterogeneous user input.</li>
                     </ol>
                 <br>
                 <center>
@@ -87,9 +86,9 @@ Our experiments with real-world datasets highlight that our method discovers vir
                 </center>
                 <br>
                 <br>
-                To cope with large-scale data (1st requirement) and support efficient manual processing (2nd requirement), we rely on guided crowdsourcing, which involves <strong> ranking of paragraphs</strong> and  <strong>argument crowdsourcing </strong> for selected paragraphs. Documents are split into paragraphs and a scoring model is used to rank them based on their likelihood to contain arguments. Crowdsourcing can generally be seen as a means to scale manual processing to large-scale data. Our approach further improves scalability by exploiting crowdsourcing only for selected paragraphs and by implementing a cost-effective strategy for posting crowd tasks, which dynamically determines the number of required answers per paragraph.
-                <br>
-                To obtain a single trusted set of arguments in the presence of uncertain, potentially incorrect human input, our approach features a third step, <strong>argument aggregation</strong>. Using a probabilistic model, we resolve conflicts in the answers and identify the arguments that best represent a paragraph, thereby addressing the need for feedback on the result quality (3rd requirement).
+                To realise efficient manual processing (R1), we employ guided crowdsourcing, which involves (I) <strong>ranking of paragraphs</strong> and (II)<strong> argument crowdsourcing </strong>for selected paragraphs. Documents are split into paragraphs and a scoring model is used to rank them based on their likelihood to contain an argument. Crowdsourcing can generally be seen as a means to scale manual processing to large-scale data. We further improve processing efficiency by exploiting crowdsourcing only for selected paragraphs and by implementing an adaptive strategy to post crowd tasks, which dynamically determines the amount of required user input per paragraph.
+                <br/>
+                To obtain a single trusted set of arguments in the presence of uncertain, potentially inconsistent user input, our approach features a third step, (III)<strong> argument aggregation</strong>. Using a probabilistic model, we resolve conflicts in the answers and identify the arguments that best represent a paragraph, thereby addressing the need for robustness against heterogeneous user input (R2).
                 <br>
                 </td>
             </tr>
