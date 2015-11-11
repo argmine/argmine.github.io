@@ -1,8 +1,3 @@
-/**
- * Created by tuanchauict on 12/14/14.
- */
-
-
 //preprocessor
 
 var list = [];

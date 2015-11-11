@@ -1,7 +1,3 @@
-/**
- * Created by tuanchauict on 12/12/14.
- */
-
 var app = angular.module("argumentDemo", []);
 
 app.controller('ArgumentController', ['$scope', function($scope){
